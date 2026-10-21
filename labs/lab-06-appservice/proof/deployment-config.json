@@ -1,0 +1,41 @@
+{
+  "appService": {
+    "name": "prod-web-app-001",
+    "plan": "prod-asp-app-001",
+    "runtime": "DOTNET|6.0",
+    "operatingSystem": "Linux",
+    "slots": {
+      "production": {
+        "trafficPercentage": 100,
+        "healthCheck": "/health",
+        "healthCheckPath": "/api/health"
+      },
+      "staging": {
+        "trafficPercentage": 0,
+        "healthCheck": "/health",
+        "deploymentSource": "GitHub"
+      }
+    },
+    "continuousDeployment": {
+      "provider": "GitHub",
+      "repository": "user/app-repo",
+      "branch": "main"
+    },
+    "scalingRules": {
+      "scaleOut": "CPU > 80%",
+      "scaleIn": "CPU < 40%",
+      "minInstances": 3,
+      "maxInstances": 10
+    }
+  },
+  "containerRegistry": {
+    "name": "prodacrapp001",
+    "sku": "Basic",
+    "adminEnabled": false,
+    "imagePruning": {
+      "enabled": true,
+      "deleteUntaggedImages": true,
+      "retentionDays": 30
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "sqlDatabase": {
+    "name": "prod-db-app-001",
+    "server": "prod-sql-001",
+    "backupRetentionDays": 7,
+    "geoRedundantBackup": true,
+    "longTermRetention": {
+      "weeklyRetention": "P12W",
+      "monthlyRetention": "P12M",
+      "yearlyRetention": "P5Y",
+      "weekOfYear": 1
+    },
+    "pointInTimeRestore": {
+      "retentionDays": 35,
+      "earliestRestoreTime": "2024-09-15T00:00:00Z"
+    },
+    "failoverGroup": {
+      "name": "prod-failover-001",
+      "partnerServer": "prod-sql-replica-westus-001",
+      "readOnlyEndpoint": "prod-sql-001.secondary.database.windows.net",
+      "rto": "PT30S",
+      "rpo": "PT0S"
+    }
+  },
+  "cosmosDb": {
+    "account": "prod-cosmos-app-001",
+    "database": "prod-db-app",
+    "collection": "sessions",
+    "ttl": 7776000,
+    "backupPolicy": "Continuous",
+    "retentionDuration": "P30D",
+    "regions": ["eastus", "westus", "northeurope"]
+  }
+}

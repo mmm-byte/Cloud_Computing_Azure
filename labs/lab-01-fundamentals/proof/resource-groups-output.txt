@@ -1,0 +1,21 @@
+Resource Groups Created - Azure CLI Output
+
+Name                           Location    Status
+-------------------------------  ----------  --------
+dev-rg-app-001                 eastus      Succeeded
+dev-rg-data-001                eastus      Succeeded
+staging-rg-app-001             eastus      Succeeded
+staging-rg-data-001            eastus      Succeeded
+prod-rg-app-001                eastus      Succeeded
+prod-rg-data-001               eastus      Succeeded
+prod-rg-network-001            eastus      Succeeded
+shared-rg-monitoring-001       eastus      Succeeded
+
+Total: 8 resource groups
+Created: 2024-10-15 to 2024-10-20
+
+Tagging Summary:
+- All resource groups have mandatory tags applied
+- Tags: environment, cost-center, owner, project, application
+- Compliance: 100% of resources properly tagged
+- No untagged resources in production

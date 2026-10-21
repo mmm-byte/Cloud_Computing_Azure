@@ -1,0 +1,32 @@
+Role Assignments - Azure RBAC Configuration
+
+Role: Owner
+- Scope: /subscriptions/prod-subscription
+- Principals: team-lead@company.com, platform-admin@company.com
+- Count: 2
+
+Role: Contributor
+- Scope: /subscriptions/prod-subscription/resourceGroups/prod-rg-app-001
+- Principals: dev-team, devops-team, app-dev-group
+- Count: 15 (5 users in groups)
+
+Role: Reader
+- Scope: /subscriptions/prod-subscription
+- Principals: auditors-group, finance-team
+- Count: 8
+
+Custom Role: AppDeveloper
+- Permissions: 
+  - Microsoft.Compute/virtualMachines/read
+  - Microsoft.Compute/virtualMachines/write
+  - Microsoft.Storage/storageAccounts/read
+- Scope: /subscriptions/prod-subscription/resourceGroups/prod-rg-app-001
+- Assigned to: app-developers-group
+- Count: 12 users
+
+Managed Identity: prod-app-mi-001
+- Role: Contributor on prod-rg-app-001
+- Used by: App Service, Container Instances
+
+Total RBAC Assignments: 37
+Compliance: 100% (all assignments follow least privilege principle)

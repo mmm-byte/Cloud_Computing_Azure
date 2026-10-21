@@ -1,0 +1,41 @@
+{
+  "resourceGroup": "prod-rg-compute-001",
+  "vmScaleSetName": "prod-vmss-app-001",
+  "vmCount": 4,
+  "vmSKU": "Standard_B2s",
+  "image": {
+    "publisher": "Canonical",
+    "offer": "0001-com-ubuntu-server-focal",
+    "sku": "20_04-lts-gen2",
+    "version": "latest"
+  },
+  "autoScaleSettings": {
+    "minInstances": 2,
+    "maxInstances": 4,
+    "scaleOutThreshold": "75% CPU",
+    "scaleInThreshold": "25% CPU",
+    "cooldownPeriod": "300 seconds"
+  },
+  "loadBalancerConfig": {
+    "name": "prod-lb-app-001",
+    "frontendPort": 80,
+    "backendPort": 8080,
+    "protocol": "Http",
+    "healthProbe": {
+      "interval": "15s",
+      "threshold": 2,
+      "path": "/health",
+      "port": 8080
+    }
+  },
+  "monitoring": {
+    "metricsCollected": [
+      "CPU %",
+      "Memory %",
+      "Disk I/O",
+      "Network throughput"
+    ],
+    "alertsEnabled": true,
+    "logAnalyticsConnected": true
+  }
+}
